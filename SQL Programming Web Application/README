@@ -1,0 +1,64 @@
+This SQL programming project involves the creation of a database host application that interfaces with a backend SQL database implementing a Contact List application. 
+The system is developed using PHP 7.2 for GUI and MySQL as backend database. PHP uses mysqli functionality to connect PHP page with the backend database using ODBC constructs. 
+
+Install MySQL workbench and Server using MySQL installer : https://dev.mysql.com/downloads/installer/
+Add following paths of bin and server bin to system environment variables: 
+C:\Program Files\mysql\bin\
+C:\Program Files\mysql\MySQL Server 8.0\bin\
+
+System environment varibales: Go to Control Panel-> System and security-> System-> 
+left pane advanced system settings-> click environment varibales-> system variables-> Path. click edit and add the above and apply ->ok. 
+
+
+Open Windows explorer. Click on View and check the box of hidden items.
+GO to C:\ProgramData\MySQL\MySQL Server 8.0\Uploads.
+Copy Cellphone_table.txt,Contacts_table.txt, Date_table.txt,Home_add_table.txt,Homephone_table.txt,Work_add-table.txt and Workphone_table.txt to this uploads folder.
+Start mySQL.  Set user authentication as 'root' . Passowrd as 'root'.FILE->Open-> Address_book_final.sql. Run the file to create database and to load data in mysql.
+
+Xampp server is used to run PHP on windows. Xampp can be installed from https://www.apachefriends.org/index.html.
+
+Run installation commands to install xampp.
+On installing xampp,
+Loading data :
+Go to C:\xampp\htdocs.
+Copy Mainpage.php, operations.php,modify_operations.php,display.php to this folder. 
+
+
+1. Go to C:\xampp\phpMyAdmin\. Open config.inc.php in text mode.
+2. Find /* Authentication type and info */
+3. Replace the following sections with the following:
+$cfg['Servers'][$i]['auth_type'] = 'cookie';
+$cfg['Servers'][$i]['user'] = 'root';
+$cfg['Servers'][$i]['password'] = '';
+$cfg['Servers'][$i]['extension'] = 'mysqli';
+$cfg['Servers'][$i]['AllowNoPassword'] = true;
+$cfg['Lang'] = '';
+4. Save file.
+5. Open the same file. Replace the $cfg['Servers'][$i]['password'] = ''; with $cfg['Servers'][$i]['password'] = 'root';, Save file. Open again and again replace $cfg['Servers'][$i]['password'] = 'root';
+   with $cfg['Servers'][$i]['password'] = '';
+6. Save file.
+Open Xampp control Panel and start Apache and mySQL.
+7. Open browser and enter localhost/phpmyAdmin.
+8. It should prompt for a user and password that is to be entered as root. Setting authentcation type as cookie in config.inc.php sets this menu. It can be set as config also.
+9. When phpmyadmin page is correctly working, 
+   A] go to http://localhost/phpmyadmin/server_import.php . Upload Address_book_Final.sql file. address_book_f should be visible in the databases.
+   B] Go to http://localhost/phpmyadmin/server_privileges.php?viewing_mode=server or User accounts. Make sure exisiting user has following credential. Or  Create new user with following creddentials:
+      Username: root
+      Hostname: localhost
+      Password : Yes
+      Action: click edit priviledges--> Global priviledges and check for all priviledges.	 
+
+open new tab in browser, enter localhost/mainpage.php.
+10. This will prompt with the GUI window of the project.
+11. Design document describes the input format and working of the system. 
+12. Enter information in the form for Insert. Click modify, delete to open into new page for modify operations.
+13. Enter keyword and click search to search the database.
+14. enter contact ID and click displayID to display info for particular ID. Click respective rest display buttons for opening information on respective tables.  
+
+
+
+Note: 
+Contact_csv_split.py is used to create data from provided csv file. Since .txt files are already provied within the zip, there is no need to run this file. 
+However, if required, it can be run and files will be created. Note that .csv and this file must be in the same folder.
+
+if localhost doesn't not work; try adding 127.0.0.1 at the same place.
